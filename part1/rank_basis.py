@@ -8,11 +8,9 @@ def rank_and_basis(A):
     Thuật toán: khử Gauss–Jordan để đưa A về dạng bậc thang rút gọn (RREF).
  
     Tham số
-    -------
     A : list[list[float]] — ma trận m×n (không nhất thiết vuông)
  
     Trả về (dict)
-    -------------
     {
       "rank"         : int,
       "col_basis"    : list[list[float]],  # các cột gốc tương ứng pivot
@@ -70,13 +68,13 @@ def rank_and_basis(A):
     rank = len(pivot_cols)
     free_cols = [c for c in range(n) if c not in pivot_cols]
  
-    # ── Cơ sở không gian cột: các cột gốc của A tại vị trí pivot ──────────
+    # Cơ sở không gian cột: các cột gốc của A tại vị trí pivot
     col_basis = [[A[i][c] for i in range(m)] for c in pivot_cols]
  
-    # ── Cơ sở không gian dòng: các hàng pivot trong RREF ──────────────────
+    # Cơ sở không gian dòng: các hàng pivot trong RREF 
     row_basis = [M[k][:] for k in range(rank)]
  
-    # ── Cơ sở không gian nghiệm ────────────────────────────────────────────
+    # Cơ sở không gian nghiệm 
     # Với mỗi biến tự do f, đặt x_f = 1, các biến tự do khác = 0,
     # rồi đọc các biến pivot từ RREF.
     null_basis = []

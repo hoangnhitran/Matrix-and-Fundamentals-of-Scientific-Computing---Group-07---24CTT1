@@ -11,15 +11,12 @@ def inverse(A):
     thu được [I | A⁻¹].
  
     Tham số
-    -------
     A : list[list[float]] — ma trận vuông n×n
  
     Trả về
-    ------
     inv : list[list[float]] — ma trận nghịch đảo n×n
  
     Ngoại lệ
-    --------
     ValueError nếu A không vuông hoặc A suy biến (det = 0).
     """
 
@@ -32,7 +29,7 @@ def inverse(A):
          for i in range(n)]
  
     for col in range(n):
-        # ── Partial pivoting ────────────────────────────────────────────────
+        # Partial pivoting 
         pivot = col
         max_val = abs(M[col][col])
         for i in range(col + 1, n):
@@ -56,12 +53,12 @@ def inverse(A):
         if pivot != col:
             M[col], M[pivot] = M[pivot], M[col]
  
-        # ── Chuẩn hóa hàng pivot ────────────────────────────────────────────
+        # Chuẩn hóa hàng pivot 
         piv_val = M[col][col]
         for j in range(2 * n):
             M[col][j] /= piv_val
  
-        # ── Khử cả trên lẫn dưới (Jordan) ──────────────────────────────────
+        # Khử cả trên lẫn dưới (Jordan) 
         for i in range(n):
             if i == col:
                 continue

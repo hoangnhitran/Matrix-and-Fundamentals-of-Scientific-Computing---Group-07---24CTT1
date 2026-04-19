@@ -8,15 +8,12 @@ def determinant(A):
     với s = số lần hoán đổi hàng.
  
     Tham số
-    -------
     A : list[list[float]] — ma trận vuông n×n
  
     Trả về
-    ------
     det : float
  
     Ngoại lệ
-    --------
     ValueError nếu A không vuông.
     """
     n = len(A)
