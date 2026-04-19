@@ -25,20 +25,16 @@ def gaussian_eliminate(A, b):
     Khử Gauss với partial pivoting để giải  A · x = b.
  
     Tham số
-    -------
     A : list[list[float]] — ma trận hệ số n×n
     b : list[float]       — vector vế phải độ dài n
  
     Trả về
-    ------
     U          : list[list[float]] — ma trận tam giác trên sau khử
     c          : list[float]       — vector vế phải sau biến đổi
     x          : list[float] | None — nghiệm (None nếu không duy nhất)
     swap_count : int  — số lần hoán đổi hàng
     pivot_cols : list[int] — danh sách chỉ số cột pivot
  
-    Cảnh báo (RuntimeWarning)
-    -------------------------
     • Khi không tìm được pivot tại một cột → hệ không có nghiệm duy nhất.
     • Khi pivot nhỏ hơn PIVOT_WARN → hệ có thể ill-conditioned.
     """
@@ -50,7 +46,7 @@ def gaussian_eliminate(A, b):
     row = 0
  
     for col in range(n):
-        # ── Tìm pivot (partial pivoting) ───────────────────────────────────
+        # Tìm pivot (partial pivoting) 
         pivot = row
         max_val = abs(M[row][col])
         for i in range(row + 1, n):
@@ -58,7 +54,7 @@ def gaussian_eliminate(A, b):
                 max_val = abs(M[i][col])
                 pivot = i
  
-        # ── Kiểm tra pivot ─────────────────────────────────────────────────
+        # Kiểm tra pivot 
         if max_val < PIVOT_EPS:
             warnings.warn(
                 f"Không tồn tại pivot tại cột {col} "
@@ -78,14 +74,14 @@ def gaussian_eliminate(A, b):
                 stacklevel=2,
             )
  
-        # ── Hoán đổi hàng ──────────────────────────────────────────────────
+        # Hoán đổi hàng 
         if pivot != row:
             M[row], M[pivot] = M[pivot], M[row]
             swap_count += 1
  
         pivot_cols.append(col)
  
-        # ── Khử các hàng bên dưới ──────────────────────────────────────────
+        # Khử các hàng bên dưới 
         for i in range(row + 1, n):
             factor = M[i][col] / M[row][col]
             for j in range(col, n + 1):
